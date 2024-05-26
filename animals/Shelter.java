@@ -7,6 +7,9 @@ import java.util.Random;
 public class Shelter {
     private final List<Animal> animals;
     private final List<Caretaker> caretakers;
+    public int adoptedAnimals = 0;
+    public int deadAnimals = 0;
+    public int firedCaretakers = 0;
 
     // Constructor
     public Shelter() {
@@ -30,8 +33,10 @@ public class Shelter {
         Random random = new Random();
         int chance = random.nextInt(101); // 0 to 100
         if (chance <= 25) {
+            adoptedAnimals++;
             System.out.println(animal.getSpecies() + " " + animal.getName() + " has been adopted. Hooray!");
         } else {
+            deadAnimals++;
             System.out.println(animal.getSpecies() + " " + animal.getName() + " died in shelter from illness or age...");
         }
     }
@@ -39,6 +44,7 @@ public class Shelter {
     // Method to remove a caretaker
     public void removeCaretaker(Caretaker caretaker) {
         caretakers.remove(caretaker);
+        firedCaretakers++;
     }
 
     // Method to display all animals
@@ -55,5 +61,28 @@ public class Shelter {
             caretaker.displayInfo();
         }
         System.out.println();
+    }
+
+    // Getters for the new variables
+    public int getAdoptedAnimals() {
+        return adoptedAnimals;
+    }
+
+    public int getDeadAnimals() {
+        return deadAnimals;
+    }
+
+    public int getFiredCaretakers() {
+        return firedCaretakers;
+    }
+
+    // Getter for animals list
+    public List<Animal> getAnimals() {
+        return animals;
+    }
+
+    // Getter for caretakers list
+    public List<Caretaker> getCaretakers() {
+        return caretakers;
     }
 }

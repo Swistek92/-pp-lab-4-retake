@@ -1,17 +1,18 @@
 import animals.*;
+import java.util.ArrayList;  
 
 public class Main {
     public static void main(String[] args) {
         // Create an instance of Shelter
         Shelter shelter = new Shelter();
 
-        // Creating four instances of Animal
+        // Creating initial four instances of Animal
         Animal animal1 = new Animal("Leo", 5, "Lion");
         Animal animal2 = new Animal("Ella", 3, "Elephant");
         Animal animal3 = new Animal("Milo", 2, "Monkey");
         Animal animal4 = new Animal("Zara", 4, "Zebra");
 
-        // Adding animals to the shelter
+        // Adding initial animals to the shelter
         shelter.addAnimal(animal1);
         shelter.addAnimal(animal2);
         shelter.addAnimal(animal3);
@@ -37,23 +38,25 @@ public class Main {
         shelter.addCaretaker(volunteer2);
         shelter.addCaretaker(volunteer3);
 
-        // Displaying information about animals and caretakers in the shelter
-        System.out.println("Animals in the Shelter:");
-        shelter.displayAnimals();
+        // Dynamically creating and adding twenty more instances of Animal
+        for (int i = 0; i < 20; i++) {
+            Animal animal = new Animal("Animal" + (i + 5), i % 10 + 1, "Species" + (i + 5));
+            shelter.addAnimal(animal);
+        }
 
-        System.out.println("Caretakers in the Shelter:");
-        shelter.displayCaretakers();
+        // Removing all animals from the shelter
+        for (Animal animal : new ArrayList<>(shelter.getAnimals())) {
+            shelter.removeAnimal(animal);
+        }
 
-        // Removing an animal and caretakers from the shelter
-        shelter.removeAnimal(animal1);
-        shelter.removeCaretaker(veterinarian1);
-        shelter.removeCaretaker(volunteer1);
+        // Removing all caretakers from the shelter
+        for (Caretaker caretaker : new ArrayList<>(shelter.getCaretakers())) {
+            shelter.removeCaretaker(caretaker);
+        }
 
-        // Displaying information about animals and caretakers in the shelter after removal
-        System.out.println("Animals in the Shelter after removal:");
-        shelter.displayAnimals();
-
-        System.out.println("Caretakers in the Shelter after removal:");
-        shelter.displayCaretakers();
+        // Displaying final counts of adopted, dead animals and fired caretakers
+        System.out.println(shelter.getAdoptedAnimals() + " has been adopted.");
+        System.out.println(shelter.getDeadAnimals() + " has died because of illness or age.");
+        System.out.println(shelter.getFiredCaretakers() + " has decided to leave.");
     }
 }
