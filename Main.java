@@ -1,4 +1,4 @@
-import animals.Animal;
+import animals.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,12 +14,6 @@ public class Main {
         animal3.displayInfo();
         animal4.displayInfo();
 
-        // Displaying specific information about one animal
-        System.out.println("\nSpecific Animal Info:");
-        System.out.println("Name: " + animal1.getName());
-        System.out.println("Age: " + animal1.getAge());
-        System.out.println("Species: " + animal1.getSpecies());
-
         // Setting new values for the first animal
         animal1.setName("Simba");
         animal1.setAge(6);
@@ -27,5 +21,20 @@ public class Main {
         // Displaying updated information about the first animal
         System.out.println("\nUpdated Animal Info:");
         animal1.displayInfo();
+
+        // Creating an instance of Veterinarian
+        Veterinarian veterinarian = new Veterinarian("John", "Doe", 101);
+        veterinarian.displayInfo();
+        veterinarian.takeCare();
+
+        // Creating instances of Volunteer
+        Volunteer volunteer1 = new Volunteer("Jane", "Smith", 201);
+        Volunteer volunteer2 = new Volunteer("Bob", "Brown", 202);
+        
+        volunteer1.displayInfo();
+        volunteer1.takeCare();
+        
+        volunteer2.displayInfo();
+        volunteer2.takeCare();
     }
 }
